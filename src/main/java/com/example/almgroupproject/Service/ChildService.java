@@ -63,18 +63,25 @@ public class ChildService {
         return firstname + " " + lastname + " är sjukanmäld";
     }
 
-    public String pickUpChild (String firstname, String lastname){
+    public Child pickUpChild (String firstname, String lastname){
+
         Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
+        if (currentChild == null){
+            throw new NullPointerException("Child could not be found");
+        }
         currentChild.setPresent(false);
         childRepository.save(currentChild);
-        return firstname + " " + lastname + " är hämtad";
+        return currentChild;
     }
 
-    public String isNotSick (String firstname, String lastname){
+    public Child isNotSick (String firstname, String lastname){
         Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
+        if (currentChild == null){
+            throw new NullPointerException("Child could not be found");
+        }
         currentChild.setSick(false);
         childRepository.save(currentChild);
-        return firstname + " " + lastname + " är friskanmäld";
+        return currentChild;
     }
 
 }
