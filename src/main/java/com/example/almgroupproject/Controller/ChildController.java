@@ -3,10 +3,7 @@ package com.example.almgroupproject.Controller;
 import com.example.almgroupproject.Models.Child;
 import com.example.almgroupproject.Service.ChildService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -19,9 +16,10 @@ public class ChildController {
         return "Hello";
     }
 
-    @GetMapping("/savechild")
-    public String saveChild(@RequestParam String firstname, @RequestParam String lastname){
+    @PostMapping("/savechild")
+    public String saveChild(@RequestBody Child child){
 
-       return childService.saveChild(firstname,lastname);
+        childService.saveChild(child);
+        return "Barn sparat";
     }
 }
