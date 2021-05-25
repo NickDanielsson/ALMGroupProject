@@ -4,7 +4,9 @@ package com.example.almgroupproject.Service;
 import com.example.almgroupproject.Models.Child;
 import com.example.almgroupproject.Repository.IChildRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public class ChildService {
    private final IChildRepository childRepository;
 
-   public List<Child> getAllChildren(){
+    public List<Child> getAllChildren(){
        return childRepository.findAll();
    }
 
@@ -21,16 +23,18 @@ public class ChildService {
        return childRepository.findChildByFirstnameAndLastname(firstname, lastname);
    }
 
-   public String saveChild(String firstname, String lastname) {
-       Child child = new Child(firstname,lastname);
-       childRepository.save(child);
-       return "Nytt barn sparat med namn " +firstname + " " +lastname;
+   public Child saveChild(Child child) {
+       Child found = childRepository.findChildByFirstnameAndLastname(child.getFirstname(), child.getLastname());
+       if (found==child) {
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Child already exists.");
+       }
+       return childRepository.save(child);
    }
 
-   public String deleteChild (String firstname, String lastname) {
-       Child childToRemove = getChild(firstname,lastname);
+   public String deleteChild (Child child) {
+       Child childToRemove = getChild(child.getFirstname(),child.getLastname());
        childRepository.delete(childToRemove);
-       return "Barnet " + firstname + " " +lastname + " togs bort från databasen";
+       return "Barnet " + child.getFirstname() + " " +child.getLastname() + " togs bort från databasen";
    }
 
    public String isPresent(String firstname, String lastname){
@@ -63,18 +67,25 @@ public class ChildService {
         return firstname + " " + lastname + " är sjukanmäld";
     }
 
-    public String pickUpChild (String firstname, String lastname){
+    public Child pickUpChild (String firstname, String lastname){
+
         Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
+        if (currentChild == null){
+            throw new NullPointerException("Child could not be found");
+        }
         currentChild.setPresent(false);
         childRepository.save(currentChild);
-        return firstname + " " + lastname + " är hämtad";
+        return currentChild;
     }
 
-    public String isNotSick (String firstname, String lastname){
+    public Child isNotSick (String firstname, String lastname){
         Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
+        if (currentChild == null){
+            throw new NullPointerException("Child could not be found");
+        }
         currentChild.setSick(false);
         childRepository.save(currentChild);
-        return firstname + " " + lastname + " är friskanmäld";
+        return currentChild;
     }
 
 }

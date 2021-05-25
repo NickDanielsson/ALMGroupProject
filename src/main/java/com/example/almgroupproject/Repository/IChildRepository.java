@@ -8,4 +8,6 @@ public interface IChildRepository extends MongoRepository<Child, String> {
      Child findChildByFirstnameAndLastname(String firstname, String lastname);
 
      Child findChildByPresentIs(boolean isPresent);
+
+     boolean findChildByFirstnameAndLastname(Child childToDelete);
 }
