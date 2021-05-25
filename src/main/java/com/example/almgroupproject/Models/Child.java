@@ -20,4 +20,22 @@ public class Child {
         this.firstname = firstname;
         this.lastname = lastname;
     }
+
+
+    public boolean isPresent() {
+        return isPresent;
+    }
+
+    public void setPresent(boolean present) {
+        isPresent = present;
+    }
+
+    public boolean isSick() {
+        return isSick;
+    }
+
+    public void setSick(boolean sick) {
+        isSick = sick;
+    }
+
 }
