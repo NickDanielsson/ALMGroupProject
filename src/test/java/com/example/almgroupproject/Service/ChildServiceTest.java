@@ -10,6 +10,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -28,11 +31,40 @@ class ChildServiceTest {
     // Nina
     @Test
     void getAllChildren() {
+        String firstName = "Anna";
+        String lastName = "Andersson";
+        Child mockChild = new Child(firstName, lastName);
+
+        when(mockRepository.findAll())
+                .thenReturn(Arrays.asList(mockChild));
+
+        List<Child> actual = cs.getAllChildren();
+
+        assertEquals(mockChild.getFirstname(), actual.get(0).getFirstname());
+        assertEquals(mockChild.getLastname(), actual.get(0).getLastname());
+        assertEquals(1, actual.size());
+
+        verify(mockRepository).findAll();
     }
+
     // Nina
     @Test
     void getChild() {
+        String firstName = "Sara";
+        String lastName = "Holm";
+        Child mockChild = new Child(firstName, lastName);
+
+        when(mockRepository.save(any()))
+                .thenReturn(mockChild);
+
+        Child actual = cs.saveChild(new Child("Sara", "Holm"));
+
+        assertEquals(mockChild.getFirstname(), actual.getFirstname());
+        assertEquals(mockChild.getLastname(), actual.getLastname());
+
+        verify(mockRepository).save(any());
     }
+
     // Peter
     @Test
     void saveChildSuccess() {
