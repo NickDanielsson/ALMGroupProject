@@ -111,7 +111,7 @@ class ChildServiceTest {
         Child mockChild = new Child("Mocke", "Mock");
         mockChild.setPresent(true);
 
-        when(childRepository.findChildByFirstnameAndLastname(mockChild.getFirstname(),mockChild.getLastname()))
+        when(mockRepository.findChildByFirstnameAndLastname(mockChild.getFirstname(),mockChild.getLastname()))
                 .thenReturn(mockChild);
 
         assertEquals("Mocke Mock är närvarande", cs.isPresent("Mocke", "Mock"));
@@ -131,7 +131,7 @@ class ChildServiceTest {
         Child mockChild = new Child("Mocke", "Mock");
         mockChild.setSick(true);
 
-        when(childRepository.findChildByFirstnameAndLastname(mockChild.getFirstname(),mockChild.getLastname()))
+        when(mockRepository.findChildByFirstnameAndLastname(mockChild.getFirstname(),mockChild.getLastname()))
                 .thenReturn(mockChild);
 
         assertEquals("Mocke Mock är sjukanmäld", cs.isSick("Mocke", "Mock"));
