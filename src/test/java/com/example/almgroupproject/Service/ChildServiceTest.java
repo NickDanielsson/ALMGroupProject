@@ -96,7 +96,7 @@ class ChildServiceTest {
         c.setPresent(true);
         System.out.println(c);
 
-        when(childRepository.findChildByFirstnameAndLastname(c.getFirstname(),c.getLastname()))
+        when(mockRepository.findChildByFirstnameAndLastname(c.getFirstname(),c.getLastname()))
                 .thenReturn(c);
 
         Child actual = cs.pickUpChild(c.getFirstname(),c.getLastname());
@@ -117,13 +117,13 @@ class ChildServiceTest {
         c.setSick(true);
         System.out.println(c);
 
-        when(childRepository.findChildByFirstnameAndLastname(c.getFirstname(),c.getLastname()))
+        when(mockRepository.findChildByFirstnameAndLastname(c.getFirstname(),c.getLastname()))
                 .thenReturn(c);
 
         Child actual = cs.isNotSick(c.getFirstname(),c.getLastname());
         System.out.println(actual);
 
-        assertFalse(actual.isPresent());
+        assertFalse(actual.isSick());
         assertEquals(c.getFirstname(),actual.getFirstname());
         assertEquals(c.getLastname(),actual.getLastname());
     }
