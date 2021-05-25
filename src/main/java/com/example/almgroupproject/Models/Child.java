@@ -1,9 +1,7 @@
 package com.example.almgroupproject.Models;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 @Data
@@ -17,6 +15,7 @@ public class Child {
     private String lastname;
     private boolean isPresent = false;
     private boolean isSick = false;
+
 
     public Child (String firstname, String lastname){
         this.firstname = firstname;

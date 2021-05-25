@@ -15,7 +15,7 @@ import java.util.List;
 public class ChildService {
    private final IChildRepository childRepository;
 
-   public List<Child> getAllChildren(){
+    public List<Child> getAllChildren(){
        return childRepository.findAll();
    }
 
