@@ -21,17 +21,18 @@ public class ChildController {
 
     // Rebellen
     @PostMapping("/savechild")
-    public void saveChild(@RequestBody Child child){
+    public String saveChild(@RequestBody Child child){
 
         childService.saveChild(child);
+        return "Barn sparat!";
     }
 
     // Rebellen
     @PostMapping("/deletechild")
-    public void deleteChild(@RequestBody Child child) {
+    public String deleteChild(@RequestBody Child child) {
 
         childService.deleteChild(child);
-
+        return "Barn borttaget!";
     }
 
     // Nina
