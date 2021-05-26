@@ -10,4 +10,5 @@ public interface IChildRepository extends MongoRepository<Child, String> {
      Child findChildByPresentIs(boolean isPresent);
 
      boolean findChildByFirstnameAndLastname(Child childToDelete);
+
 }

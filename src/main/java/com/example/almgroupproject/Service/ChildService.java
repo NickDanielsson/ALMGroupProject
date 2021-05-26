@@ -31,15 +31,13 @@ public class ChildService {
        return childRepository.save(child);
    }
 
-   public String deleteChild (Child child) {
+   public Child deleteChild (Child child) {
        Child found = childRepository.findChildByFirstnameAndLastname(child.getFirstname(), child.getLastname());
-       if (found==child) {
-           childRepository.delete(child);
-       }
-       if (!(found ==child)) {
+       if (found==null) {
            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Child dont exist.");
        }
-       return "Barn borttaget";
+       childRepository.delete(found);
+       return found;
    }
 
    public String isPresent(String firstname, String lastname){

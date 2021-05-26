@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,20 +92,25 @@ class ChildServiceTest {
     // Peter
     @Test
     void deleteChild() {
-        String expectedFirstName = "Nils";
-        String expectedLastName = "Persson";
+        String expectedFirstName = "Kalle";
+        String expectedLastName = "Andersson";
 
         Child savingChild = new Child();
         savingChild.setFirstname(expectedFirstName);
         savingChild.setLastname(expectedLastName);
 
-        Child childToDelete=savingChild;
+        when(mockRepository.findChildByFirstnameAndLastname(savingChild.getFirstname(),savingChild.getLastname()))
+                .thenReturn(savingChild);
 
-        cs.deleteChild(childToDelete);
+        Child childToDelete = cs.deleteChild(savingChild);
 
-        assertFalse(mockRepository.findChildByFirstnameAndLastname(savingChild));
+        assertEquals(savingChild.getFirstname(), childToDelete.getFirstname());
+        assertFalse(mockRepository.findChildByFirstnameAndLastname(childToDelete));
+        verify(mockRepository).findChildByFirstnameAndLastname(savingChild.getFirstname(), savingChild.getLastname());
 
     }
+
+
     // Rune
     @Test //testar på barn som är närvarande respektive frånvarande.
     void isPresent() {
