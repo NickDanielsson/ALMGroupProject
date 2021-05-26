@@ -46,4 +46,11 @@ public class ChildController {
     public String isSick(@RequestParam String firstname, @RequestParam String lastname){
         return childService.isSick(firstname, lastname);
     }
+  
+    @GetMapping("/isnotsick")
+    public Child isNotSick(@RequestParam String firstname,@RequestParam String lastname){
+
+        return childService.isNotSick(firstname,lastname);
+
+    }
 }
