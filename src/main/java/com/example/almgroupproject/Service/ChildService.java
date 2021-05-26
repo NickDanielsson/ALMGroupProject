@@ -57,7 +57,7 @@ public class ChildService {
         Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
         currentChild.setPresent(true);
         childRepository.save(currentChild);
-        return firstname + " " + lastname + " är inlämnat";
+        return firstname + " " + lastname + " är inlämnad";
     }
 
     public String callInChildSick (String firstname, String lastname){
