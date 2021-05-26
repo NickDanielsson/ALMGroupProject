@@ -32,9 +32,14 @@ public class ChildService {
    }
 
    public String deleteChild (Child child) {
-       Child childToRemove = getChild(child.getFirstname(),child.getLastname());
-       childRepository.delete(childToRemove);
-       return "Barnet " + child.getFirstname() + " " +child.getLastname() + " togs bort från databasen";
+       Child found = childRepository.findChildByFirstnameAndLastname(child.getFirstname(), child.getLastname());
+       if (found==child) {
+           childRepository.delete(child);
+       }
+       if (!(found ==child)) {
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Child dont exist.");
+       }
+       return "Barn borttaget";
    }
 
    public String isPresent(String firstname, String lastname){
