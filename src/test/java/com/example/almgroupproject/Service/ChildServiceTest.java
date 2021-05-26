@@ -143,14 +143,39 @@ class ChildServiceTest {
 
 
     }
-    // Thilnader
+
+    // Thilander
     @Test
     void leaveChild() {
+        // ARRANGE
+        Child c = new Child("Donald", "Trump");
+        c.setPresent(true);
+        when(mockRepository.findChildByFirstnameAndLastname(c.getFirstname(),c.getLastname())).thenReturn(c);
+
+        // ACT
+        String actual = cs.leaveChild(c.getFirstname(), c.getLastname());
+
+        // ASSERT
+        assertEquals("Donald Trump är inlämnad", actual);
+
     }
+
     // Thilander
     @Test
     void callInChildSick() {
+        // ARRANGE
+        Child c = new Child("Donald", "Trump");
+        c.setSick(true);
+        when(mockRepository.findChildByFirstnameAndLastname(c.getFirstname(),c.getLastname())).thenReturn(c);
+
+        // ACT
+        String actual = cs.callInChildSick(c.getFirstname(), c.getLastname());
+
+        // ASSERT
+        assertEquals("Donald Trump är sjukanmäld", actual);
+
     }
+
     // Nick
     @Test
     @DisplayName("pickUpChild change isPresent to false")
