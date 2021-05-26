@@ -69,8 +69,8 @@ class ChildServiceTest {
     // Peter
     @Test
     void saveChildSuccess() {
-        String expectedFirstName = "Johan";
-        String expectedLastName = "Rune";
+        String expectedFirstName = "Nils";
+        String expectedLastName = "Persson";
 
         Child savingChild = new Child();
         savingChild.setFirstname(expectedFirstName);
@@ -90,8 +90,8 @@ class ChildServiceTest {
     // Peter
     @Test
     void deleteChild() {
-        String expectedFirstName = "Johan";
-        String expectedLastName = "Rune";
+        String expectedFirstName = "Nils";
+        String expectedLastName = "Persson";
 
         Child savingChild = new Child();
         savingChild.setFirstname(expectedFirstName);
