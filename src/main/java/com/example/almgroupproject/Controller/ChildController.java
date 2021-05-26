@@ -18,11 +18,15 @@ public class ChildController {
         return "Hello";
     }
 
+
+    // Rebellen
     @PostMapping("/savechild")
     public void saveChild(@RequestBody Child child){
 
         childService.saveChild(child);
     }
+
+    // Rebellen
     @PostMapping("/deletechild")
     public void deleteChild(@RequestBody Child child) {
 
@@ -30,11 +34,13 @@ public class ChildController {
 
     }
 
+    // Nina
     @GetMapping("/getall")
     public List<Child> getAllChildren() {
         return childService.getAllChildren();
     }
 
+    // Nick
     @GetMapping("/pickupchild")
     public Child pickUpChild(@RequestParam String firstname,@RequestParam String lastname){
 
@@ -42,16 +48,19 @@ public class ChildController {
 
     }
 
+    // Rune
     @GetMapping("/ispresent")
     public String isPresent(@RequestParam String firstname, @RequestParam String lastname){
         return childService.isPresent(firstname, lastname);
     }
 
+    // Rune
     @GetMapping("/issick")
     public String isSick(@RequestParam String firstname, @RequestParam String lastname){
         return childService.isSick(firstname, lastname);
     }
-  
+
+    // Nick
     @GetMapping("/isnotsick")
     public Child isNotSick(@RequestParam String firstname,@RequestParam String lastname){
 
