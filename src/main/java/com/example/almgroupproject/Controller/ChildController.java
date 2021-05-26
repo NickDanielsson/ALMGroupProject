@@ -37,6 +37,16 @@ public class ChildController {
 
     }
 
+    @GetMapping("/ispresent")
+    public String isPresent(@RequestParam String firstname, @RequestParam String lastname){
+        return childService.isPresent(firstname, lastname);
+    }
+
+    @GetMapping("/issick")
+    public String isSick(@RequestParam String firstname, @RequestParam String lastname){
+        return childService.isSick(firstname, lastname);
+    }
+  
     @GetMapping("/isnotsick")
     public Child isNotSick(@RequestParam String firstname,@RequestParam String lastname){
 
