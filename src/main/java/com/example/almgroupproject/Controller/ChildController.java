@@ -41,11 +41,17 @@ public class ChildController {
         return childService.getAllChildren();
     }
 
+    // Nina
+    @GetMapping("/getchild")
+    public Child getChild(@RequestParam String firstname, @RequestParam String lastname) {
+        return childService.getChild(firstname,lastname);
+    }
+
     // Nick
     @GetMapping("/pickupchild")
     public Child pickUpChild(@RequestParam String firstname,@RequestParam String lastname){
 
-       return childService.pickUpChild(firstname,lastname);
+        return childService.pickUpChild(firstname,lastname);
 
     }
 
