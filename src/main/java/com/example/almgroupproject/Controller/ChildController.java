@@ -36,4 +36,14 @@ public class ChildController {
        return childService.pickUpChild(firstname,lastname);
 
     }
+
+    @GetMapping("/ispresent")
+    public String isPresent(@RequestParam String firstname, @RequestParam String lastname){
+        return childService.isPresent(firstname, lastname);
+    }
+
+    @GetMapping("/issick")
+    public String isSick(@RequestParam String firstname, @RequestParam String lastname){
+        return childService.isSick(firstname, lastname);
+    }
 }
