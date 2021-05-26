@@ -68,4 +68,18 @@ public class ChildController {
         return childService.isNotSick(firstname,lastname);
 
     }
+
+    // Thilander
+    @PutMapping("/leavechild")
+    public String leaveChild(@RequestParam String firstName,
+                             @RequestParam String lastName){
+        return childService.leaveChild(firstName,lastName);
+    }
+
+    // Thilander
+    @PutMapping("/callinchildsick")
+    public String callInChildSick(@RequestParam String firstName,
+                                  @RequestParam String lastName){
+        return childService.callInChildSick(firstName,lastName);
+    }
 }
