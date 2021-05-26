@@ -19,10 +19,15 @@ public class ChildController {
     }
 
     @PostMapping("/savechild")
-    public String saveChild(@RequestBody Child child){
+    public void saveChild(@RequestBody Child child){
 
         childService.saveChild(child);
-        return "Barn sparat";
+    }
+    @PostMapping("/deletechild")
+    public void deleteChild(@RequestBody Child child) {
+
+        childService.deleteChild(child);
+
     }
 
     @GetMapping("/getall")
