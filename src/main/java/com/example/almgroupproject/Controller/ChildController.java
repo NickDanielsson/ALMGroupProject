@@ -52,7 +52,6 @@ public class ChildController {
     public Child pickUpChild(@RequestParam String firstname,@RequestParam String lastname){
 
         return childService.pickUpChild(firstname,lastname);
-
     }
 
     // Rune
@@ -72,6 +71,20 @@ public class ChildController {
     public Child isNotSick(@RequestParam String firstname,@RequestParam String lastname){
 
         return childService.isNotSick(firstname,lastname);
+    }
 
+    // Thilander
+    @PutMapping("/leavechild")
+    public String leaveChild(@RequestParam String firstName,
+                             @RequestParam String lastName){
+        return childService.leaveChild(firstName,lastName);
+    }
+
+    // Thilander
+    @PutMapping("/callinchildsick")
+    public String callInChildSick(@RequestParam String firstName,
+                                  @RequestParam String lastName){
+        return childService.callInChildSick(firstName,lastName);
     }
 }
+
