@@ -2,14 +2,13 @@ package com.example.almgroupproject.Models;
 
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Child {
 
-    @Id
     private String id;
     private String firstname;
     private String lastname;

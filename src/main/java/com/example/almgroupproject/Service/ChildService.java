@@ -20,7 +20,11 @@ public class ChildService {
    }
 
    public Child getChild (String firstname, String lastname) {
-       return childRepository.findChildByFirstnameAndLastname(firstname, lastname);
+       Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
+       if (currentChild == null){
+           throw new NullPointerException("Child could not be found");
+       }
+       return currentChild;
    }
 
    public Child saveChild(Child child) {
@@ -66,6 +70,7 @@ public class ChildService {
     public String callInChildSick (String firstname, String lastname){
         Child currentChild = childRepository.findChildByFirstnameAndLastname(firstname,lastname);
         currentChild.setSick(true);
+        currentChild.setPresent(false);
         childRepository.save(currentChild);
         return firstname + " " + lastname + " är sjukanmäld";
     }

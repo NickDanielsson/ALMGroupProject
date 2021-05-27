@@ -35,6 +35,7 @@ public class ChildController {
         return "Barn borttaget!";
     }
 
+
     // Nina
     @GetMapping("/getall")
     public List<Child> getAllChildren() {
@@ -75,16 +76,16 @@ public class ChildController {
 
     // Thilander
     @PutMapping("/leavechild")
-    public String leaveChild(@RequestParam String firstName,
-                             @RequestParam String lastName){
-        return childService.leaveChild(firstName,lastName);
+    public String leaveChild(@RequestParam String firstname,
+                             @RequestParam String lastname){
+        return childService.leaveChild(firstname,lastname);
     }
 
     // Thilander
     @PutMapping("/callinchildsick")
-    public String callInChildSick(@RequestParam String firstName,
-                                  @RequestParam String lastName){
-        return childService.callInChildSick(firstName,lastName);
+    public String callInChildSick(@RequestParam String firstname,
+                                  @RequestParam String lastname){
+        return childService.callInChildSick(firstname,lastname);
     }
 }
 
